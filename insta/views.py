@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.contrib.auth.models import User
+from .models import Image
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
 
 def insta(request):
     images = Image.all_images()
-    return render(request, 'index.html', {"images": images})
+    return render(request, 'all-posts/index.html', {"images": images})
 
 
 def search_results(request):
@@ -33,7 +37,7 @@ def image(request, image_id):
 @login_required(login_url='/accounts/login/')
 def image(request, image_id):
     try:
-        article = Article.objects.get(id=image_id)
+        image = image.objects.get(id=image_id)
     except DoesNotExist:
         raise Http404()
     return render(request, "all-posts/post.html", {"image": image})

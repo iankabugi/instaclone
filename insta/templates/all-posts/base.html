@@ -1,37 +1,40 @@
 {% load bootstrap3 %}
-{% load staticfiles%}
-
+{% load static%}
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
 
+  {% if title %}
+  <title>INSTAGRAM - {{user}}</title>
+  {% else %}
+  <title> INSTAGRAM</title>
+  {% endif %}
+
   {% block styles %}
   {% bootstrap_css %}
-
+  <link rel="stylesheet" href="{% static 'css/basenews.css' %}">
   {% endblock %}
 
 </head>
 
 <body>
+  {% include "navbar.html" %}
 
-
-  {% block content %}{%endblock%}
+  {% block content %} <h1 class='text-center'>Posts for {{date|date:"l d-F Y"}}</h1> {%endblock%}
 
   {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
   {% bootstrap_javascript %}
-
-  {% endblock %}
-
   {% block extrascripts %}
   <script>
 
 
   </script>
   {% endblock %}
+  {% endblock %}
 </body>
 
 </html>
+

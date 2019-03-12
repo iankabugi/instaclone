@@ -124,21 +124,14 @@ class Image(models.Model):
         return images
 
     @classmethod
-    def get_photos(cls):
-        return cls.objects.all()
+    def all_images(cls):
+        images = cls.objects.all()
+        return images
 
     @classmethod
     def search_by_profile(cls, profile):
         photo = Profile.objects.filter(name_icontains=profile)[0]
         return cls.objects.filter(profile_id=photo.id)
-
-    @classmethod
-    def filter_by_location(cls, location):
-        """
-        The method to get images taken in a certain location
-        """
-        the_location = Location.objects.get(name=location)
-        return cls.objects.filter(location_id=the_location.id)
 
     def __str__(self):
         return self.name
