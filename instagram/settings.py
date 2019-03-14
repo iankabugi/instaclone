@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'insta',
     'bootstrap3',
     'tinymce',
+    'friendship',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

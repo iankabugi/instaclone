@@ -1,20 +1,127 @@
-<!DOCTYPE html>
-<html>
-<title>W3.CSS</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+
+{% load static %}
+
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
 <body>
-  <!-- smaller screens -->
+
   <div class="w3-bar w3-blue">
     <div class="w3-container">
     </div>
-    <a class="w3-bar-item w3-button w3-mobile" href="#view">Home</a>
-    <a class="w3-bar-item w3-button w3-mobile" href="/admin">ADMIN</a>
-    <a class="w3-bar-item w3-button w3-mobile" href=searcher>SEARCH</a>
-    <a class="w3-bar-item w3-button w3-mobile" href="#">Profile</a>
+    <nav class="w3-bar w3-blue">
+      <a href="/" class="w3-bar-item w3-button w3-mobile">
+        <section class="logo-section"><img class="logo"
+            src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png" /><br>
+          <img class="logoname"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" />
+        </section>
+      </a>
+      <form class="search-section" role="search" action="{% url 'search_profile' %}">
+        <input class="input-search" style="width:250px !important;height: 28px;opacity: 1.0;" type="search" id="search"
+          name="username" placeholder="search" />
+      </form>
+      <section class="icons-section">
+        <a href="{% url 'profile' %}" class="w3-bar-item w3-button w3-mobile"> <i class="fa fa-user" style="font-size:25px;color: white;"></i></a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'upload_image'%}" class="w3-bar-item w3-button w3-mobile"> <i class="fas fa-upload"
+            style="font-size:25px;color: white;"></i></a>&nbsp;&nbsp;</section>
+      <a class="w3-bar-item w3-button w3-mobile" href="/admin"><img class="logo"
+        src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Logo_admin_128px.png" /></a>
+      {%endif%}
+    </nav>
   </div>
-
 </body>
 
 </html>
+<style>
+  .w3-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    height: 76px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+
+  }
+
+  .w3-bar .logo-section {
+    display: flex;
+    align-items: center;
+  }
+
+  .w3-bar .logo-section div {
+    align-self: stretch;
+    width: 1px;
+    background: black;
+    margin: 0 20px;
+  }
+
+  .w3-bar .icons-section .fa {
+    text-decoration: none;
+    color: inherit;
+    font-size: 2rem;
+    margin: 0 10px;
+  }
+
+  .w3-bar .logo {
+    width: 40px;
+  }
+
+  .w3-bar .logoname {
+    width: 130px;
+  }
+
+  .w3-bar .input-search {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solix #ddd;
+    outline: 0;
+  }
+
+  .w3-bar .input-search:focus {
+    text-align: left;
+  }
+
+  .icons-section {
+    font-size: 40px !important;
+  }
+
+  #search {
+    font-family: FontAwesome !important;
+  }
+
+  ::placeholder {
+    font-size: 17px;
+  }
+
+  .logo-section {
+    padding-left: 150px;
+    font-weight: lighter;
+  }
+</style>
+{% endblock%}
