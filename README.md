@@ -52,7 +52,12 @@ run this in your terminal: python manage.py tests
 ### Break down into end to end tests
 
 The test are doen to affirm app functionality
-### BDD
+### Behaviour-Driven Development
+| Behavior            | Input                         | Output                        |
+| ------------------- | ----------------------------- | ----------------------------- |
+| Create User | Enter credenetialss | they are saved in the background and redirected to the landing page |
+| Sign In | Click on the Sign In and enter your credentials | Loads the landing page. |
+
 
 ## Deployment
 
